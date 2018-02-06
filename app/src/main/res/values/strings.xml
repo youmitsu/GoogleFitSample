@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoogleFitSample</string>
+    <string name="button_text">同期</string>
+    <string name="title_text">歩数一覧</string>
 </resources>
