@@ -10,8 +10,10 @@ import com.google.android.gms.fitness.Fitness
 import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.request.DataReadRequest
+import com.google.android.gms.tasks.Tasks
 import java.util.*
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
                 .build()
 
+        val hoge = GoogleSignIn.getLastSignedInAccount(this)
         if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
             GoogleSignIn.requestPermissions(
                     this, // your activity
@@ -59,12 +62,14 @@ class MainActivity : AppCompatActivity() {
         val readRequest: DataReadRequest = DataReadRequest.Builder()
                 .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
                 .setTimeRange(startTime, endTime, TimeUnit.MICROSECONDS)
+                .bucketByTime(1, TimeUnit.HOURS)
                 .build()
 
-        Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
+        val response = Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
                 .readData(readRequest)
-                .addOnSuccessListener { dataReadResponse -> Log.d("READ", "onSuccess()") }
-                .addOnFailureListener { e -> Log.e("READ", e.message) }
-                .addOnCompleteListener { task -> Log.d("READ", task.toString()) }
+
+        val readDataResult = Tasks.await(response)
+        val dataSet = readDataResult.getDataSet(DataType.TYPE_STEP_COUNT_DELTA)
+        Log.d("dataSet", dataSet?.toString())
     }
 }
