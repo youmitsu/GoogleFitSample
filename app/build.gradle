@@ -29,7 +29,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.google.android.gms:play-services-fitness:11.6.0'
     compile 'com.google.android.gms:play-services-auth:11.6.0'
+    compile 'com.github.ReactiveX:RxKotlin:1.x-SNAPSHOT'
 }
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }

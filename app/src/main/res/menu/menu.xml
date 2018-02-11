@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sync"
+        android:icon="@drawable/common_google_signin_btn_icon_dark"
+        android:title="@string/button_text"
+        app:showAsAction="ifRoom" />
+</menu>
