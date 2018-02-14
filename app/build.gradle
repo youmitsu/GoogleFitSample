@@ -30,6 +30,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-fitness:11.6.0'
     compile 'com.google.android.gms:play-services-auth:11.6.0'
     compile 'com.github.ReactiveX:RxKotlin:1.x-SNAPSHOT'
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
 }
 repositories {
     mavenCentral()

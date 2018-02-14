@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/sync"
-        android:icon="@drawable/common_google_signin_btn_icon_dark"
+        android:icon="@mipmap/ic_cached_black_24dp"
         android:title="@string/button_text"
         app:showAsAction="ifRoom" />
 </menu>
